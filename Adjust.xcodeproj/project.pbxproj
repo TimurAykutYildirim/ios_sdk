@@ -76,6 +76,9 @@
 		969952D21A01309200928462 /* ADJAttribution.m in Sources */ = {isa = PBXBuildFile; fileRef = 969952D11A01309200928462 /* ADJAttribution.m */; };
 		96A2D2261CEE0E6200C39DE0 /* ADJSdkClickHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A2D2251CEE0E6200C39DE0 /* ADJSdkClickHandlerTests.m */; };
 		96A2D2381CEF3B2D00C39DE0 /* ADJRequestHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A2D2371CEF3B2D00C39DE0 /* ADJRequestHandlerTests.m */; };
+		96AB755D1D26A3CB00E7CCF9 /* ADJInitState.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AB755C1D26A3CB00E7CCF9 /* ADJInitState.m */; };
+		96AD8DFF1D48F36800D8B4CC /* ADJSessionParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 96AD8DFD1D48F36800D8B4CC /* ADJSessionParameters.h */; };
+		96AD8E001D48F36800D8B4CC /* ADJSessionParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AD8DFE1D48F36800D8B4CC /* ADJSessionParameters.m */; };
 		96BCFBCD1AC99231005A65C5 /* Adjust.h in Headers */ = {isa = PBXBuildFile; fileRef = 96E5E34C18BBB48A008E7B30 /* Adjust.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96BCFBCE1AC99235005A65C5 /* ADJEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 9609BC6819EEA55800E02303 /* ADJEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96BCFBD01AC9923F005A65C5 /* ADJConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 960A8BB71A029A8000F2BB95 /* ADJConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -347,6 +350,10 @@
 		969952D11A01309200928462 /* ADJAttribution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJAttribution.m; sourceTree = "<group>"; };
 		96A2D2251CEE0E6200C39DE0 /* ADJSdkClickHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJSdkClickHandlerTests.m; sourceTree = "<group>"; };
 		96A2D2371CEF3B2D00C39DE0 /* ADJRequestHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJRequestHandlerTests.m; sourceTree = "<group>"; };
+		96AB755B1D26A3CB00E7CCF9 /* ADJInitState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJInitState.h; sourceTree = "<group>"; };
+		96AB755C1D26A3CB00E7CCF9 /* ADJInitState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJInitState.m; sourceTree = "<group>"; };
+		96AD8DFD1D48F36800D8B4CC /* ADJSessionParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJSessionParameters.h; sourceTree = "<group>"; };
+		96AD8DFE1D48F36800D8B4CC /* ADJSessionParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJSessionParameters.m; sourceTree = "<group>"; };
 		96C93DF31AC47F2E00B53F56 /* NSData+ADJAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ADJAdditions.h"; sourceTree = "<group>"; };
 		96C93DF41AC47F2E00B53F56 /* NSData+ADJAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ADJAdditions.m"; sourceTree = "<group>"; };
 		96CD2BDC1A13BFC600A40AFB /* NSString+ADJAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ADJAdditions.h"; sourceTree = "<group>"; };
@@ -757,6 +764,8 @@
 		9DA11A321C96D2A200980777 /* Adjust */ = {
 			isa = PBXGroup;
 			children = (
+				96AD8DFD1D48F36800D8B4CC /* ADJSessionParameters.h */,
+				96AD8DFE1D48F36800D8B4CC /* ADJSessionParameters.m */,
 				9DAA08A71D2A80B7001C04E4 /* ADJBackoffStrategy.h */,
 				9DAA08A81D2A80B7001C04E4 /* ADJBackoffStrategy.m */,
 				9DAA08A91D2A80B7001C04E4 /* ADJTrackingPixel.h */,
@@ -916,6 +925,7 @@
 				96164D841CCA4D10009431AB /* ADJSdkClickHandler.h in Headers */,
 				9DA11A7F1C96D2A200980777 /* ADJDeviceInfo.h in Headers */,
 				9DA11A6F1C96D2A200980777 /* ADJActivityState.h in Headers */,
+				96AD8DFF1D48F36800D8B4CC /* ADJSessionParameters.h in Headers */,
 				9DA11A771C96D2A200980777 /* ADJAdjustFactory.h in Headers */,
 				9DA11A9B1C96D2A300980777 /* ADJUtil.h in Headers */,
 				9DA11A891C96D2A200980777 /* ADJPackageBuilder.h in Headers */,
@@ -1299,6 +1309,7 @@
 				9DA11A841C96D2A200980777 /* ADJEventFailure.m in Sources */,
 				9DA11A721C96D2A200980777 /* NSData+ADJAdditions.m in Sources */,
 				9DA11A9A1C96D2A300980777 /* Adjust.m in Sources */,
+				96AD8E001D48F36800D8B4CC /* ADJSessionParameters.m in Sources */,
 				9DAA08AE1D2A80B7001C04E4 /* ADJTrackingPixel.m in Sources */,
 				9DA11A901C96D2A300980777 /* ADJResponseData.m in Sources */,
 				9DA11A801C96D2A200980777 /* ADJDeviceInfo.m in Sources */,

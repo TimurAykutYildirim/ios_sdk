@@ -17,6 +17,7 @@
 		963909C21BCC0D8300A2E8A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 963909C11BCC0D8300A2E8A4 /* Assets.xcassets */; };
 		963909D01BCC0DA600A2E8A4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 963909CF1BCC0DA600A2E8A4 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9DAA08B41D2A831A001C04E4 /* ADJTrackingPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAA08B31D2A831A001C04E4 /* ADJTrackingPixel.m */; };
+		96FC6E4C1D252FF1004482D8 /* ADJSessionParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FC6E4B1D252FF1004482D8 /* ADJSessionParameters.m */; };
 		9DC95F2F1C10596500138E4B /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC95F2E1C10596500138E4B /* Constants.m */; };
 		9DC95F321C105B4C00138E4B /* URLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC95F311C105B4C00138E4B /* URLRequest.m */; };
 		9DF7AA6B1CB4F52500D3591F /* ADJActivityHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7AA361CB4F52400D3591F /* ADJActivityHandler.m */; };
@@ -67,6 +68,8 @@
 		963909CF1BCC0DA600A2E8A4 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		9DAA08B21D2A831A001C04E4 /* ADJTrackingPixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJTrackingPixel.h; sourceTree = "<group>"; };
 		9DAA08B31D2A831A001C04E4 /* ADJTrackingPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJTrackingPixel.m; sourceTree = "<group>"; };
+		96FC6E4A1D252FF1004482D8 /* ADJSessionParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJSessionParameters.h; sourceTree = "<group>"; };
+		96FC6E4B1D252FF1004482D8 /* ADJSessionParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJSessionParameters.m; sourceTree = "<group>"; };
 		9DC95F2D1C10596500138E4B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		9DC95F2E1C10596500138E4B /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		9DC95F301C105B4C00138E4B /* URLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLRequest.h; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 			children = (
 				9DAA08B21D2A831A001C04E4 /* ADJTrackingPixel.h */,
 				9DAA08B31D2A831A001C04E4 /* ADJTrackingPixel.m */,
+				96FC6E4A1D252FF1004482D8 /* ADJSessionParameters.h */,
+				96FC6E4B1D252FF1004482D8 /* ADJSessionParameters.m */,
 				96164D971CCA4E3A009431AB /* ADJBackoffStrategy.h */,
 				96164D981CCA4E3A009431AB /* ADJBackoffStrategy.m */,
 				96164D991CCA4E3A009431AB /* ADJSdkClickHandler.h */,
@@ -349,6 +354,7 @@
 				9DF7AA7D1CB4F52500D3591F /* ADJRequestHandler.m in Sources */,
 				9DF7AA7C1CB4F52500D3591F /* ADJPackageHandler.m in Sources */,
 				9DF7AA801CB4F52500D3591F /* ADJSessionSuccess.m in Sources */,
+				96FC6E4C1D252FF1004482D8 /* ADJSessionParameters.m in Sources */,
 				9DF7AA761CB4F52500D3591F /* ADJDeviceInfo.m in Sources */,
 				9DF7AA811CB4F52500D3591F /* ADJTimerCycle.m in Sources */,
 				963909BD1BCC0D8300A2E8A4 /* ViewControllertvOS.m in Sources */,

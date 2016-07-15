@@ -336,6 +336,58 @@ an event, these parameters won't even be read.
 You can read more about using URL callbacks, including a full list of available placeholders, in our 
 [callbacks guide][callbacks-guide].
 
+### <a id="session-parameters">X. Set up session parameters
+
+You can add parameters to be send with every event and session.
+These parameters are saved, so you don't have to set them every session.
+
+External device id
+
+````
+[Adjust addExternalDeviceId:@"customDeviceId"];
+```
+
+Session callback parameters
+
+The session callback parameters have a similar interface of the event callback parameters. XXX-link
+You can add callback parameters to all events and sessions by calling `addSessionCallbackParameter:value:`
+
+````
+[Adjust addSessionCallbackParameter:@"foo" value:@"bar"];
+```
+The session callback parameters will be merged with the callback parameters added to an event.
+The callback parameters added to an event have precedence over the session callback parameters. 
+Meaning that, when adding a callback parameter with the same key to one from the session, the value that prevails is the one added to an event.
+
+The session callback parameters are also saved. If you add a key that already exists with a new value, the new value will overwrite.
+If you try to add a key with the same value as the currently saved, there will be no change.
+
+Since these parameters are saved, you can choose to remove a key and it's corresponding value by calling `removeSessionCallbackParameter`.
+
+````
+[Adjust removeSessionCallbackParameter:@"foo"];
+```
+
+You can also reset the session callback parameters by calling `resetSessionCallbackParameters`. It will remove all saved keys and values.
+
+````
+[Adjust resetSessionCallbackParameters];
+```
+
+Partner parameters
+
+````
+[Adjust addSessionPartnerParameter:@"foo" value:@"bar"];
+```
+
+````
+[Adjust removeSessionPartnerParameter:@"foo"];
+```
+
+````
+[Adjust resetSessionPartnerParameters];
+```
+
 ### <a id="deeplink-reattributions">7. Deeplink reattributions
 
 You can set up the adjust SDK to handle deeplinks that are used to open your app via a custom URL scheme. We will only read 

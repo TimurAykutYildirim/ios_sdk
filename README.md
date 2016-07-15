@@ -526,6 +526,23 @@ this in your `AdjustConfig` instance:
 [adjustConfig setSendInBackground:YES];
 ```
 
+### <a id="delay">X. Delay send
+
+When adding the session parameters XXX-link, you might want to send this values during the install, but not have access to them before the sdk start.
+For that situation, it's possible to configure the sdk, to delay the first time it starts.
+
+```objc
+[adjustConfig setDelayStart:5.0];
+```
+
+With this configuration, the sdk will not send any information during the first launch, until the number of seconds of delay has passed.
+Any session parameters added within this delay time, will update the install and events, even when they where triggered before.
+If you have the information that you wanted to send with the install and event, it's possible to anticipate the end of the delay send by calling `sendFirstPackages`
+
+```objc
+[Adjust sendFirstPackages];
+```
+
 ### <a id="attribution-callback">10. Attribution callback
 
 You can register a delegate callback to be notified of tracker attribution changes. Due to the different sources considered 

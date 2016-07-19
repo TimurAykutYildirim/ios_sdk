@@ -347,16 +347,16 @@ Once you have add any of these parameters, you don't need to add them every time
 If you add the same parameter twice, there will be no effect.
 
 These session parameters can be called before the adjust SDK is launched to make sure they are send even on install.
-If you need to send them with an install, but can only obtain the needed values after launch, it's possible to [delay](XXX) the first launch of the adjust SDK to allow this behaviour.
+If you need to send them with an install, but can only obtain the needed values after launch, it's possible to [delay](#delay-start) the first launch of the adjust SDK to allow this behaviour.
 
-#### <a id"session-callback-parameters"> Session callback parameters
+#### <a id="session-callback-parameters"> Session callback parameters
 
 The same callback parameters that are registered for [events](#callback-parameters) can be also saved to be sent in every event or session of the adjust SDK.
 
 The session callback parameters have a similar interface of the event callback parameters. 
 Instead of adding the key and it's value to an event, it's added through a call to `Adjust` method `addSessionCallbackParameter:value:`:
 
-````
+```objc
 [Adjust addSessionCallbackParameter:@"foo" value:@"bar"];
 ```
 
@@ -366,17 +366,17 @@ Meaning that, when adding a callback parameter to an event with the same key to 
 
 It's possible to remove a specific session callback parameter by passing the desiring key to the method `removeSessionCallbackParameter`.
 
-````
+```objc
 [Adjust removeSessionCallbackParameter:@"foo"];
 ```
 
 If you wish to remove all key and values from the session callback parameters, you can reset it with the method `resetSessionCallbackParameters`.
 
-````
+```objc
 [Adjust resetSessionCallbackParameters];
 ```
 
-#### <a id"session-partner-parameters"> Session partner parameters
+#### <a id="session-partner-parameters"> Session partner parameters
 
 In the same way that there is [session callback parameters](#session-callback-parameters) that are send every in event or session of the adjust SDK, there is also session partner parameters.
 
@@ -385,7 +385,7 @@ These will be transmitted to network partners, for the integrations that have be
 The session partner parameters have a similar interface of the event partner parameters. 
 Instead of adding the key and it's value to an event, it's added through a call to `Adjust` method `addSessionPartnerParameter:value:`:
 
-````
+```objc
 [Adjust addSessionPartnerParameter:@"foo" value:@"bar"];
 ```
 
@@ -395,17 +395,17 @@ Meaning that, when adding a partner parameter to an event with the same key to o
 
 It's possible to remove a specific session partner parameter by passing the desiring key to the method `removeSessionPartnerParameter`.
 
-````
+```objc
 [Adjust removeSessionPartnerParameter:@"foo"];
 ```
 
 If you wish to remove all key and values from the session partner parameters, you can reset it with the method `resetSessionPartnerParameters`.
 
-````
+```objc
 [Adjust resetSessionPartnerParameters];
 ```
 
-#### <a id"external-device-id"> External device id
+#### <a id="external-device-id"> External device id
 
 XXX(better context/explanation?)
 
@@ -413,15 +413,30 @@ The adjust SDK uses device ids that are available from iOS, but your app might h
 
 To save your unique identifier in the session parameters that are send in every request and session, call the `addExternalDeviceId` method:
 
-````
+```objc
 [Adjust addExternalDeviceId:@"customDeviceId"];
 ```
 
 It's also possible to remove the saved unique identifier by calling the method `resetExternalDeviceId`:
 
-````
+```objc
 [Adjust resetExternalDeviceId];
 ```
+
+#### <a id="delay-start"> Delay start
+
+Delaying the start of the adjust SDK allows your app some time to obtain session parameters, such as unique identifiers, to be send on install.
+
+Set the initial delay time in seconds with the method `setDelayStart` in the `ADJConfig` instance:
+
+```objc
+[adjustConfig setDelayStart:5.5];
+```
+
+In this case this will make the adjust SDK not send the initial install session and any event created for 5.5 seconds.
+After this time is expired or if you call `[Adjust sendFirstPackages]` in the meanwhile, every session parameter will be added to the delayed install session and events and the adjust SDK will resume as usual.
+
+The maximum delay start time of the adjust SDK is 10 seconds.
 
 ### <a id="deeplink-reattributions">7. Deeplink reattributions
 
@@ -559,23 +574,6 @@ this in your `AdjustConfig` instance:
 
 ```objc
 [adjustConfig setSendInBackground:YES];
-```
-
-### <a id="delay">X. Delay send
-
-When adding the session parameters XXX-link, you might want to send this values during the install, but not have access to them before the sdk start.
-For that situation, it's possible to configure the sdk, to delay the first time it starts.
-
-```objc
-[adjustConfig setDelayStart:5.0];
-```
-
-With this configuration, the sdk will not send any information during the first launch, until the number of seconds of delay has passed.
-Any session parameters added within this delay time, will update the install and events, even when they where triggered before.
-If you have the information that you wanted to send with the install and event, it's possible to anticipate the end of the delay send by calling `sendFirstPackages`
-
-```objc
-[Adjust sendFirstPackages];
 ```
 
 ### <a id="attribution-callback">10. Attribution callback

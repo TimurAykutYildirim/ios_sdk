@@ -30,6 +30,7 @@ like to use adjust tracking from Javascript code, please consult our
         * [Session callback parameters](#session-callback-parameters)
         * [Session partner parameters](#session-partner-parameters)
         * [External device id](#external-device-id)
+        * [Delay start](#delay-start)
     * [Deeplink reattributions](#deeplink-reattributions)
         * [Universal links](#universal-links)
             * [Enable universal links in the dashboard](#ulinks-dashboard)
@@ -46,13 +47,13 @@ like to use adjust tracking from Javascript code, please consult our
     * [Push token](#push-token)
     * [AdWords Search and Mobile Web tracking](#adwords)
 * [Troubleshooting](#troubleshooting)
-    * [Issues with delayed SDK initialisation](#ts-delayed-init)
-    * [I'm seeing "Adjust requires ARC" error](#ts-arc)
-    * [I'm seeing "\[UIDevice adjTrackingEnabled\]: unrecognized selector sent to instance" error](#ts-categories)
-    * [I'm seeing the "Session failed (Ignoring too frequent session.)" error](#ts-session-failed)
-    * [I'm not seeing "Install tracked" in the logs](#ts-install-tracked)
-    * [I'm seeing "Unattributable SDK click ignored" message](#ts-iad-sdk-click)
-    * [I'm seeing wrong revenue data in the adjust dashboard](#ts-wrong-revenue-amount)
+   * [Issues with delayed SDK initialisation](#ts-delayed-init)
+   * [I'm seeing "Adjust requires ARC" error](#ts-arc)
+   * [I'm seeing "\[UIDevice adjTrackingEnabled\]: unrecognized selector sent to instance" error](#ts-categories)
+   * [I'm seeing the "Session failed (Ignoring too frequent session.)" error](#ts-session-failed)
+   * [I'm not seeing "Install tracked" in the logs](#ts-install-tracked)
+   * [I'm seeing "Unattributable SDK click ignored" message](#ts-iad-sdk-click)
+   * [I'm seeing wrong revenue data in the adjust dashboard](#ts-wrong-revenue-amount)
 * [License](#license)
 
 ## <a id="example-apps"></a>Example apps
@@ -217,7 +218,7 @@ for the first time, you should see the info log `Install tracked`.
 
 Once you integrate the adjust SDK into your project, you can take advantage of the following features.
 
-### <a id="event-tracking">6. Event tracking
+### <a id="event-tracking">Event tracking
 
 You can use adjust to track events. Lets say you want to track every tap on a particular button. You would create a new 
 event token in your [dashboard], which has an associated event token - looking something like `abc123`. In your button's 
@@ -438,7 +439,7 @@ After this time is expired or if you call `[Adjust sendFirstPackages]` in the me
 
 The maximum delay start time of the adjust SDK is 10 seconds.
 
-### <a id="deeplink-reattributions">7. Deeplink reattributions
+### <a id="deeplink-reattributions">Deeplink reattributions
 
 You can set up the adjust SDK to handle deeplinks that are used to open your app via a custom URL scheme. We will only read 
 certain adjust specific parameters. This is essential if you are planning to run retargeting or re-engagement campaigns with
@@ -558,7 +559,7 @@ decide where to navigate the user.
 
 For instructions on how to test your implementation, please read our [guide][universal-links-testing].
 
-### <a id="event-buffering">8. Event buffering
+### <a id="event-buffering">Event buffering
 
 If your app makes heavy use of event tracking, you might want to delay some HTTP requests in order to send them in one batch
 every minute. You can enable event buffering with your `ADJConfig` instance:
@@ -567,7 +568,7 @@ every minute. You can enable event buffering with your `ADJConfig` instance:
 [adjustConfig setEventBufferingEnabled:YES];
 ```
 
-### <a id="background-tracking">9. Background tracking
+### <a id="background-tracking">Background tracking
 
 The default behaviour of the adjust SDK is to pause sending HTTP requests while the app is in the background. You can change
 this in your `AdjustConfig` instance:
@@ -576,7 +577,7 @@ this in your `AdjustConfig` instance:
 [adjustConfig setSendInBackground:YES];
 ```
 
-### <a id="attribution-callback">10. Attribution callback
+### <a id="attribution-callback">Attribution callback
 
 You can register a delegate callback to be notified of tracker attribution changes. Due to the different sources considered 
 for attribution, this information can not by provided synchronously. Follow these steps to implement the optional delegate 
@@ -621,7 +622,7 @@ the `attribution` parameters. Here is a quick summary of its properties:
 - `NSString creative` the creative grouping level of the current install.
 - `NSString clickLabel` the click label of the current install.
 
-### <a id="event-session-callbacks">11. Event and session callbacks
+### <a id="event-session-callbacks">Event and session callbacks
 
 You can register a delegate callback to be notified of successful and failed tracked events and/or sessions.
 
@@ -672,7 +673,7 @@ And both event and session failed objects also contain:
 
 - `BOOL willRetry` indicates that there will be an attempt to resend the package at a later time.
 
-### <a id="deferred-deeplink-callback">12. Deferred deeplink callback
+### <a id="deferred-deeplink-callback">Deferred deeplink callback
 
 You can register a delegate callback to be notified before a deferred deeplink is opened and decide if the adjust SDK will 
 open it.
@@ -699,7 +700,7 @@ Within the callback function you have access to the deeplink. The returned boole
 the deeplink. You could, for example, not allow the SDK to open the deeplink at the current moment, save it, and open it yourself 
 later.
 
-### <a id="disable-tracking">13. Disable tracking
+### <a id="disable-tracking">Disable tracking
 
 You can disable the adjust SDK from tracking any activities of the current device by calling `setEnabled` with parameter 
 `NO`. **This setting is remembered between sessions**, but it can only be activated after the first session.
@@ -711,7 +712,7 @@ You can disable the adjust SDK from tracking any activities of the current devic
 <a id="is-enabled">You can check if the adjust SDK is currently enabled by calling the function `isEnabled`. It is always 
 possible to activate the adjust SDK by invoking `setEnabled` with the enabled parameter as `YES`.
 
-### <a id="offline-mode">14. Offline mode
+### <a id="offline-mode">Offline mode
 
 You can put the adjust SDK in offline mode to suspend transmission to our servers while retaining tracked data to be sent 
 later. While in offline mode, all information is saved in a file, so be careful not to trigger too many events while in 
@@ -729,7 +730,7 @@ mode, all saved information is sent to our servers with the correct time informa
 Unlike disabling tracking, this setting is **not remembered** bettween sessions. This means that the SDK is in online mode 
 whenever it is started, even if the app was terminated in offline mode.
 
-### <a id="device-ids">15. Device IDs
+### <a id="device-ids">Device IDs
 
 Certain services (such as Google Analytics) require you to coordinate device and client IDs in order to prevent duplicate 
 reporting.
@@ -740,7 +741,7 @@ To obtain the device identifier IDFA, call the function `idfa`:
 NSString *idfa = [Adjust idfa];
 ```
 
-### <a id="push-token">16. Push token
+### <a id="push-token">Push token
 
 To send us the push notification token, add the following call to `Adjust` in the 
 `didRegisterForRemoteNotificationsWithDeviceToken` of your app delegate:

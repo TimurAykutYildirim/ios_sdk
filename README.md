@@ -26,6 +26,10 @@ like to use adjust tracking from Javascript code, please consult our
             * [In-App Purchase verification](#iap-verification)
         * [Callback parameters](#callback-parameters)
         * [Partner parameters](#partner-parameters)
+    * [Session parameters](#session-parameters)
+        * [Session callback parameters](#session-callback-parameters)
+        * [Session partner parameters](#session-partner-parameters)
+        * [External device id](#external-device-id)
     * [Deeplink reattributions](#deeplink-reattributions)
         * [Universal links](#universal-links)
             * [Enable universal links in the dashboard](#ulinks-dashboard)
@@ -338,54 +342,85 @@ You can read more about using URL callbacks, including a full list of available 
 
 ### <a id="session-parameters">X. Set up session parameters
 
-You can add parameters to be send with every event and session.
-These parameters are saved, so you don't have to set them every session.
+Some parameters are saved to be send in every event and session of the adjust SDK.
+Once you have add any of these parameters, you don't need to add them every time, since they will be saved locally.
+If you add the same parameter twice, there will be no effect.
 
-External device id
+These session parameters can be called before the adjust SDK is launched to make sure they are send even on install.
+If you need to send them with an install, but can only obtain the needed values after launch, it's possible to [delay](XXX) the first launch of the adjust SDK to allow this behaviour.
 
-````
-[Adjust addExternalDeviceId:@"customDeviceId"];
-```
+#### <a id"session-callback-parameters"> Session callback parameters
 
-Session callback parameters
+The same callback parameters that are registered for [events](#callback-parameters) can be also saved to be sent in every event or session of the adjust SDK.
 
-The session callback parameters have a similar interface of the event callback parameters. XXX-link
-You can add callback parameters to all events and sessions by calling `addSessionCallbackParameter:value:`
+The session callback parameters have a similar interface of the event callback parameters. 
+Instead of adding the key and it's value to an event, it's added through a call to `Adjust` method `addSessionCallbackParameter:value:`:
 
 ````
 [Adjust addSessionCallbackParameter:@"foo" value:@"bar"];
 ```
+
 The session callback parameters will be merged with the callback parameters added to an event.
 The callback parameters added to an event have precedence over the session callback parameters. 
-Meaning that, when adding a callback parameter with the same key to one from the session, the value that prevails is the one added to an event.
+Meaning that, when adding a callback parameter to an event with the same key to one added from the session, the value that prevails is the callback parameter added to the event.
 
-The session callback parameters are also saved. If you add a key that already exists with a new value, the new value will overwrite.
-If you try to add a key with the same value as the currently saved, there will be no change.
-
-Since these parameters are saved, you can choose to remove a key and it's corresponding value by calling `removeSessionCallbackParameter`.
+It's possible to remove a specific session callback parameter by passing the desiring key to the method `removeSessionCallbackParameter`.
 
 ````
 [Adjust removeSessionCallbackParameter:@"foo"];
 ```
 
-You can also reset the session callback parameters by calling `resetSessionCallbackParameters`. It will remove all saved keys and values.
+If you wish to remove all key and values from the session callback parameters, you can reset it with the method `resetSessionCallbackParameters`.
 
 ````
 [Adjust resetSessionCallbackParameters];
 ```
 
-Partner parameters
+#### <a id"session-partner-parameters"> Session partner parameters
+
+In the same way that there is [session callback parameters](#session-callback-parameters) that are send every in event or session of the adjust SDK, there is also session partner parameters.
+
+These will be transmitted to network partners, for the integrations that have been activated in your adjust [dashboard].
+
+The session partner parameters have a similar interface of the event partner parameters. 
+Instead of adding the key and it's value to an event, it's added through a call to `Adjust` method `addSessionPartnerParameter:value:`:
 
 ````
 [Adjust addSessionPartnerParameter:@"foo" value:@"bar"];
 ```
 
+The session partner parameters will be merged with the partner parameters added to an event.
+The partner parameters added to an event have precedence over the session partner parameters. 
+Meaning that, when adding a partner parameter to an event with the same key to one added from the session, the value that prevails is the partner parameter added to the event.
+
+It's possible to remove a specific session partner parameter by passing the desiring key to the method `removeSessionPartnerParameter`.
+
 ````
 [Adjust removeSessionPartnerParameter:@"foo"];
 ```
 
+If you wish to remove all key and values from the session partner parameters, you can reset it with the method `resetSessionPartnerParameters`.
+
 ````
 [Adjust resetSessionPartnerParameters];
+```
+
+#### <a id"external-device-id"> External device id
+
+XXX(better context/explanation?)
+
+The adjust SDK uses device ids that are available from iOS, but your app might have other sources of identifiers that can help features like ad conversion.
+
+To save your unique identifier in the session parameters that are send in every request and session, call the `addExternalDeviceId` method:
+
+````
+[Adjust addExternalDeviceId:@"customDeviceId"];
+```
+
+It's also possible to remove the saved unique identifier by calling the method `resetExternalDeviceId`:
+
+````
+[Adjust resetExternalDeviceId];
 ```
 
 ### <a id="deeplink-reattributions">7. Deeplink reattributions

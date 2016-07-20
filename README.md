@@ -341,7 +341,7 @@ an event, these parameters won't even be read.
 You can read more about using URL callbacks, including a full list of available placeholders, in our 
 [callbacks guide][callbacks-guide].
 
-### <a id="session-parameters">X. Set up session parameters
+### <a id="session-parameters">Set up session parameters
 
 Some parameters are saved to be send in every event and session of the adjust SDK.
 Once you have add any of these parameters, you don't need to add them every time, since they will be saved locally.
